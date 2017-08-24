@@ -18,6 +18,8 @@ public class Item {
   private Integer viewCount;
   @JsonProperty(value = "closed_date")
   private Integer closedDate;
+  @JsonProperty(value = "protected_date")
+  private Integer protectedDate;
   @JsonProperty(value = "accepted_answer_id")
   private Integer acceptedAnswerId;
   @JsonProperty(value = "answer_count")
@@ -76,6 +78,14 @@ public class Item {
 
   public void setClosedDate(Integer closedDate) {
     this.closedDate = closedDate;
+  }
+
+  public Integer getProtectedDate() {
+    return protectedDate;
+  }
+
+  public void setProtectedDate(Integer protectedDate) {
+    this.protectedDate = protectedDate;
   }
 
   public Integer getAcceptedAnswerId() {
@@ -156,5 +166,13 @@ public class Item {
 
   public void setTitle(String title) {
     this.title = title;
+  }
+
+  public Object getMigratedFrom() {
+    return migratedFrom;
+  }
+
+  public void setMigratedFrom(Object migratedFrom) {
+    this.migratedFrom = migratedFrom;
   }
 }
