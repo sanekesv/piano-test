@@ -12,18 +12,18 @@
   <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 </head>
 <body style="margin: 20px">
-<form action="/search" method="get" enctype="text/plain" style="text-align: center">
-  Find questions: <input type="text" name="line" value="${line}">
-  <input type="submit" value="Submit"/>
+<form class="form-inline" action="/search" style="text-align: center;">
+  <input style="width: 80%" placeholder="Type here to search" class="form-control" name="line" value="${line}">
+  <button class="btn btn-default">Submit</button>
 </form>
 <c:if test="${questions!= null}">
   <c:if test="${questions.items.size()>0}">
     <row class="col-md-12" style="text-align: center">
       <c:if test="${page>1}">
-        <a href="<c:url value="/search?line=${line}&page=${page-1}"/>">Prev</a>
+        <a class="btn btn-default" role="button" href="<c:url value="/search?line=${line}&page=${page-1}"/>">Prev</a>
       </c:if>
       page: ${page}
-      <a href="<c:url value="/search?line=${line}&page=${page+1}"/>">Next</a>
+      <a class="btn btn-default" role="button" href="<c:url value="/search?line=${line}&page=${page+1}"/>">Next</a>
     </row>
     <c:forEach items="${questions.items}" var="question">
       <row class="col-md-12">
@@ -76,10 +76,10 @@
     </c:forEach>
     <row class="col-md-12" style="text-align: center">
       <c:if test="${page>1}">
-        <a href="<c:url value="/search?line=${line}&page=${page-1}"/>">Prev</a>
+        <a class="btn btn-default" role="button" href="<c:url value="/search?line=${line}&page=${page-1}"/>">Prev</a>
       </c:if>
       page: ${page}
-      <a href="<c:url value="/search?line=${line}&page=${page+1}"/>">Next</a>
+      <a class="btn btn-default" role="button" href="<c:url value="/search?line=${line}&page=${page+1}"/>">Next</a>
     </row>
   </c:if>
   <c:if test="${questions.items.size()==0}">
