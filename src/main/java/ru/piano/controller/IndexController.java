@@ -31,8 +31,8 @@ public class IndexController {
   }
 
   @RequestMapping(value = "search", method = RequestMethod.GET)
-  public String searchOnStackOverflow(@RequestParam String line, Model model) throws URISyntaxException {
-    HttpResponse response = sendGet(line);
+  public String searchOnStackOverflow(@RequestParam String line, @RequestParam(defaultValue = "1", required = false) int page, Model model) throws URISyntaxException {
+    HttpResponse response = sendGet(line, page);
     JsonMapper<StackOverflowAnswer> jsonMapper = new JsonMapper<>();
     try {
       BufferedReader rd = new BufferedReader(
@@ -46,6 +46,7 @@ public class IndexController {
       StackOverflowAnswer stackOverflowAnswer = jsonMapper.transform(result.toString(), StackOverflowAnswer.class);
       model.addAttribute("questions", stackOverflowAnswer);
       model.addAttribute("line", line);
+      model.addAttribute("page", page);
     }
     catch (IOException e) {
       e.printStackTrace();
@@ -54,10 +55,11 @@ public class IndexController {
     return "index";
   }
 
-  private HttpResponse sendGet(String line) throws URISyntaxException {
+  private HttpResponse sendGet(String line, int page) throws URISyntaxException {
 
     URIBuilder builder = new URIBuilder();
     builder.setScheme("http").setHost("api.stackexchange.com").setPath("/2.2" + "/" + "search")
+        .setParameter("page", String.valueOf(page))
         .setParameter("order", "desc")
         .setParameter("sort", "activity")
         .setParameter("intitle", line)

@@ -18,6 +18,13 @@
 </form>
 <c:if test="${questions!= null}">
   <c:if test="${questions.items.size()>0}">
+    <row class="col-md-12" style="text-align: center">
+      <c:if test="${page>1}">
+        <a href="<c:url value="/search?line=${line}&page=${page-1}"/>">Prev</a>
+      </c:if>
+      page: ${page}
+      <a href="<c:url value="/search?line=${line}&page=${page+1}"/>">Next</a>
+    </row>
     <c:forEach items="${questions.items}" var="question">
       <row class="col-md-12">
         <div class="col-md-2">
@@ -67,6 +74,13 @@
 
       <hr class="col-md-12">
     </c:forEach>
+    <row class="col-md-12" style="text-align: center">
+      <c:if test="${page>1}">
+        <a href="<c:url value="/search?line=${line}&page=${page-1}"/>">Prev</a>
+      </c:if>
+      page: ${page}
+      <a href="<c:url value="/search?line=${line}&page=${page+1}"/>">Next</a>
+    </row>
   </c:if>
   <c:if test="${questions.items.size()==0}">
     <div class="col-md-12" style="text-align: center">
@@ -74,5 +88,6 @@
     </div>
   </c:if>
 </c:if>
+<div class="col-md-12" style="height: 20px"/>
 </body>
 </html>
